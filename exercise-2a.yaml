@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment
+metadata:
+  name: demo-api
+  labels:
+    name: demo-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: demo-api
+  template:
+    metadata:
+      labels:
+        name: demo-api
+    spec:
+      containers:
+      - name: demo-api
+        image: lukebond/demo-api
+        ports:
+        - containerPort: 9000
+        env:
+        - name: MESSAGE
+          value: "Hello from Container Camp"
