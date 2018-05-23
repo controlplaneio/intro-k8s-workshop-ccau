@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment
+metadata:
+  name: demo-api-redis
+  labels:
+    name: demo-api-redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: demo-api-redis
+  template:
+    metadata:
+      labels:
+        name: demo-api-redis
+    spec:
+      containers:
+      - name: demo-api-redis
+        image: lukebond/demo-api-redis
+        ports:
+        - containerPort: 9000
+        env:
+        - name: MESSAGE
+          value: "Hello from Container Camp"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: demo-api-redis
+  name: demo-api-redis
+spec:
+  ports:
+  - port: 9000
+    targetPort: 9000
+    nodePort: 9000
+  selector:
+    name: demo-api-redis
+  type: NodePort

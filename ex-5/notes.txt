@@ -1,0 +1,1 @@
+exercise is verified by using kubectl post-forward 9000:9000 and 3 curls to :9000
