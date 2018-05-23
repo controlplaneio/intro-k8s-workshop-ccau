@@ -33,7 +33,6 @@ spec:
   ports:
   - port: 9000
     targetPort: 9000
-    nodePort: 9000
   selector:
     name: demo-api-redis
-  type: NodePort
+  type: ClusterIP
